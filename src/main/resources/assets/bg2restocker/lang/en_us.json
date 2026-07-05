@@ -1,0 +1,14 @@
+{
+  "block.bg2restocker.restocker": "Blueprint Restocker",
+  "itemGroup.bg2restocker": "BG2 Restocker",
+  "bg2restocker.gui.craft_all": "Craft All",
+  "bg2restocker.gui.available": "Available (%s)",
+  "bg2restocker.gui.craftable": "Will be crafted (%s)",
+  "bg2restocker.gui.missing": "Missing recipe (%s)",
+  "bg2restocker.gui.unknown": "Unknown — no network (%s)",
+  "bg2restocker.msg.no_gadget": "Insert a Copy-Paste Gadget",
+  "bg2restocker.msg.bg2_missing": "Building Gadgets 2 is not installed",
+  "bg2restocker.msg.no_template": "The gadget has no copied blueprint",
+  "bg2restocker.msg.read_failed": "Could not read the blueprint from the gadget",
+  "bg2restocker.msg.no_network": "No ME network connection — check cables and power"
+}

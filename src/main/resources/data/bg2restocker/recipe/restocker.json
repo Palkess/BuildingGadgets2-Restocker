@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    { "type": "neoforge:mod_loaded", "modid": "buildinggadgets2" }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ICI",
+    "CTC",
+    "IMI"
+  ],
+  "key": {
+    "I": { "item": "minecraft:iron_ingot" },
+    "C": { "item": "ae2:fluix_crystal" },
+    "T": { "item": "buildinggadgets2:template_manager" },
+    "M": { "item": "ae2:interface" }
+  },
+  "result": {
+    "id": "bg2restocker:restocker",
+    "count": 1
+  }
+}
