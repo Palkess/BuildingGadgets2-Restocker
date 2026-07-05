@@ -74,9 +74,9 @@ public class RestockerScreen extends AbstractContainerScreen<RestockerMenu> {
         this.craftPending = false;
         this.hasCraftable = false;
         this.rows.clear();
-        addSection(entries, RestockerBlockEntity.STATUS_AVAILABLE, "bg2restocker.gui.available", COLOR_AVAILABLE);
-        addSection(entries, RestockerBlockEntity.STATUS_CRAFTABLE, "bg2restocker.gui.craftable", COLOR_CRAFTABLE);
         addSection(entries, RestockerBlockEntity.STATUS_MISSING, "bg2restocker.gui.missing", COLOR_MISSING);
+        addSection(entries, RestockerBlockEntity.STATUS_CRAFTABLE, "bg2restocker.gui.craftable", COLOR_CRAFTABLE);
+        addSection(entries, RestockerBlockEntity.STATUS_AVAILABLE, "bg2restocker.gui.available", COLOR_AVAILABLE);
         addSection(entries, RestockerBlockEntity.STATUS_UNKNOWN, "bg2restocker.gui.unknown", COLOR_UNKNOWN);
         scroll = Mth.clamp(scroll, 0, Math.max(0, rows.size() - VISIBLE_ROWS));
         if (craftButton != null) {
