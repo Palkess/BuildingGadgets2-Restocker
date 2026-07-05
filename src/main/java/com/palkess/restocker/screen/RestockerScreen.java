@@ -6,6 +6,7 @@ import com.palkess.restocker.network.RestockerActionPayload;
 import com.palkess.restocker.network.RestockerSyncPayload;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
@@ -37,8 +38,10 @@ public class RestockerScreen extends AbstractContainerScreen<RestockerMenu> {
     private String message = "";
     private boolean hasCraftable = false;
     private boolean craftPending = false;
+    private boolean exportMode = false;
     private int scroll = 0;
     private Button craftButton;
+    private Button modeButton;
 
     public RestockerScreen(RestockerMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
@@ -52,10 +55,21 @@ public class RestockerScreen extends AbstractContainerScreen<RestockerMenu> {
         super.init();
         craftButton = addRenderableWidget(Button.builder(
                         Component.translatable("bg2restocker.gui.craft_all"), b -> sendCraftAll())
-                .bounds(leftPos + 48, topPos + 102, 120, 20)
+                .bounds(leftPos + 48, topPos + 102, 76, 20)
                 .build());
         craftButton.active = hasCraftable && !craftPending;
+        modeButton = addRenderableWidget(Button.builder(
+                        Component.empty(), b -> send(RestockerActionPayload.ACTION_TOGGLE_MODE))
+                .bounds(leftPos + 128, topPos + 102, 40, 20)
+                .build());
+        updateModeButton();
         send(RestockerActionPayload.ACTION_REFRESH);
+    }
+
+    private void updateModeButton() {
+        String key = exportMode ? "bg2restocker.gui.mode.export" : "bg2restocker.gui.mode.network";
+        modeButton.setMessage(Component.translatable(key));
+        modeButton.setTooltip(Tooltip.create(Component.translatable(key + ".tooltip")));
     }
 
     private void sendCraftAll() {
@@ -69,10 +83,14 @@ public class RestockerScreen extends AbstractContainerScreen<RestockerMenu> {
                 new RestockerActionPayload(menu.getBlockEntity().getBlockPos(), action));
     }
 
-    public void setData(List<RestockerSyncPayload.Entry> entries, String message) {
+    public void setData(List<RestockerSyncPayload.Entry> entries, String message, boolean exportMode) {
         this.message = message;
         this.craftPending = false;
         this.hasCraftable = false;
+        this.exportMode = exportMode;
+        if (modeButton != null) {
+            updateModeButton();
+        }
         this.rows.clear();
         addSection(entries, RestockerBlockEntity.STATUS_MISSING, "bg2restocker.gui.missing", COLOR_MISSING);
         addSection(entries, RestockerBlockEntity.STATUS_CRAFTABLE, "bg2restocker.gui.craftable", COLOR_CRAFTABLE);

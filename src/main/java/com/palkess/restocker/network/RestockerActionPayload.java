@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 public record RestockerActionPayload(BlockPos pos, int action) implements CustomPacketPayload {
     public static final int ACTION_REFRESH = 0;
     public static final int ACTION_CRAFT_ALL = 1;
+    public static final int ACTION_TOGGLE_MODE = 2;
 
     public static final Type<RestockerActionPayload> TYPE =
             new Type<>(ResourceLocation.fromNamespaceAndPath(Restocker.MODID, "action"));

@@ -15,7 +15,7 @@ import java.util.List;
  * Server → client: the categorised material list for the Restocker at {@code pos}.
  * {@code message} is a translation key shown when the list is empty (or blank when it isn't).
  */
-public record RestockerSyncPayload(BlockPos pos, List<Entry> entries, String message)
+public record RestockerSyncPayload(BlockPos pos, List<Entry> entries, String message, boolean exportMode)
         implements CustomPacketPayload {
 
     public record Entry(ItemStack stack, long needed, long have, byte status) {
@@ -35,6 +35,7 @@ public record RestockerSyncPayload(BlockPos pos, List<Entry> entries, String mes
                     buf.writeByte(entry.status());
                 }
                 buf.writeUtf(payload.message());
+                buf.writeBoolean(payload.exportMode());
             },
             buf -> {
                 BlockPos pos = buf.readBlockPos();
@@ -47,7 +48,7 @@ public record RestockerSyncPayload(BlockPos pos, List<Entry> entries, String mes
                             buf.readVarLong(),
                             buf.readByte()));
                 }
-                return new RestockerSyncPayload(pos, entries, buf.readUtf());
+                return new RestockerSyncPayload(pos, entries, buf.readUtf(), buf.readBoolean());
             });
 
     @Override

@@ -22,6 +22,7 @@ public final class ServerPayloadHandler {
             switch (payload.action()) {
                 case RestockerActionPayload.ACTION_REFRESH -> be.requestRefresh(player);
                 case RestockerActionPayload.ACTION_CRAFT_ALL -> be.craftAll(player);
+                case RestockerActionPayload.ACTION_TOGGLE_MODE -> be.toggleExportMode(player);
                 default -> {
                 }
             }

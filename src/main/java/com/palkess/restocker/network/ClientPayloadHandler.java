@@ -10,7 +10,7 @@ public final class ClientPayloadHandler {
         context.enqueueWork(() -> {
             if (Minecraft.getInstance().screen instanceof RestockerScreen screen
                     && screen.getMenu().getBlockEntity().getBlockPos().equals(payload.pos())) {
-                screen.setData(payload.entries(), payload.message());
+                screen.setData(payload.entries(), payload.message(), payload.exportMode());
             }
         });
     }
