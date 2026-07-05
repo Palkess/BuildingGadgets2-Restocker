@@ -16,6 +16,15 @@ java {
     }
 }
 
+// Stamps the version into neoforge.mods.toml so releases only need -Pmod_version.
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [mod_version: project.mod_version]
+    inputs.properties replaceProperties
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand replaceProperties
+    }
+}
+
 repositories {
     mavenCentral()
     // Proxy that serves CurseForge files as Gradle dependencies (no API key needed).

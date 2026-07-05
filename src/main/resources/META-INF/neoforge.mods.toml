@@ -5,7 +5,7 @@ issueTrackerURL = "https://github.com/Palkess/BuildingGadgets2-Restocker/issues"
 
 [[mods]]
 modId = "bg2restocker"
-version = "1.0.0"
+version = "${mod_version}"
 displayName = "BuildingGadgets2-Restocker"
 displayURL = "https://github.com/Palkess/BuildingGadgets2-Restocker"
 description = '''Reads the material list from a Building Gadgets 2 Copy-Paste Gadget and restocks your AE2 ME network via autocrafting.'''

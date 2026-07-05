@@ -33,6 +33,15 @@ The jar lands in `build/libs/buildinggadgets2-restocker-1.0.0.jar`. Drop it into
 If you have Gradle installed once, generate the wrapper (`gradle wrapper`) so subsequent builds
 can use `./gradlew build`.
 
+### Releasing
+
+Pushing to `main` with `major:` or `minor:` anywhere in a commit message triggers
+`.github/workflows/release.yml`: it bumps off the latest `v*` git tag (`minor:` → x.Y.0,
+`major:` → X.0.0), builds the jar with that version, and publishes a GitHub release with
+the jar attached. Commits without either keyword release nothing. The first release (no
+tags yet) uses `mod_version` from `gradle.properties` as-is. A release can also be
+triggered manually from the Actions tab (choose major or minor).
+
 ### Dev runs
 
 `gradle runClient` starts a dev client with both AE2 (Maven Central) and Building Gadgets 2
