@@ -62,9 +62,11 @@ dependencies {
     // dependencies of its own.
     runtimeOnly "curse.maven:building-gadgets-298187:6850515"
 
-    // Dev-run convenience only (not a dependency of Restocker): Flux Networks
-    // (1.21.1-8.0.0) for wirelessly recharging the BG2 gadgets while testing.
-    runtimeOnly "curse.maven:flux-networks-248020:6089446"
+    // Dev-run convenience only (not a dependency of Restocker): Sophisticated
+    // Backpacks (+ its required library Sophisticated Core) to verify Restocker
+    // compatibility, e.g. exporting materials into a placed backpack.
+    runtimeOnly "curse.maven:sophisticated-backpacks-422301:8365718"
+    runtimeOnly "curse.maven:sophisticated-core-618298:8365656"
 
     // Dev-run convenience only: JEI, for looking up recipes/items while testing.
     runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.21.0.247"
